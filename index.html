@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ginka Theja — DevOps Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #00D4C8;
+  --teal2: #00A896;
+  --teal3: #007B7B;
+  --navy: #060D1A;
+  --navy2: #0A1628;
+  --navy3: #0F2040;
+  --card: #0D1B2E;
+  --card2: #112238;
+  --text: #E8EDF5;
+  --muted: #7A8FA8;
+  --border: rgba(0,212,200,0.15);
+  --glow: rgba(0,212,200,0.08);
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3rem;
+  background:rgba(6,13,26,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--mono);color:var(--teal);font-size:0.9rem;letter-spacing:0.1em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--teal);}
+.nav-cta{background:transparent;border:1px solid var(--teal);color:var(--teal);padding:0.45rem 1.25rem;border-radius:3px;text-decoration:none;font-size:0.8rem;font-family:var(--mono);transition:all 0.2s;}
+.nav-cta:hover{background:var(--teal);color:var(--navy);}
+
+/* ── HERO BANNER ── */
+.hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;
+}
+
+/* ANIMATED GRID BACKGROUND */
+.grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,200,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,200,0.04) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 20s linear infinite;
+}
+@keyframes gridMove{from{transform:translateY(0);}to{transform:translateY(60px);}}
+
+/* FLOATING TECH NODES */
+.nodes-canvas{position:absolute;inset:0;pointer-events:none;}
+
+/* GLOW ORBS */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+.orb1{width:500px;height:500px;top:-100px;right:-100px;background:radial-gradient(circle,rgba(0,212,200,0.12),transparent 70%);}
+.orb2{width:400px;height:400px;bottom:-100px;left:-50px;background:radial-gradient(circle,rgba(0,123,123,0.1),transparent 70%);}
+.orb3{width:300px;height:300px;top:50%;left:40%;background:radial-gradient(circle,rgba(0,168,150,0.06),transparent 70%);}
+
+/* HERO CONTENT */
+.hero-content{
+  position:relative;z-index:10;
+  width:100%;max-width:1100px;margin:0 auto;
+  padding:8rem 3rem 4rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+}
+.hero-left{}
+.badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(0,212,200,0.1);border:1px solid rgba(0,212,200,0.3);
+  color:var(--teal);padding:0.4rem 1rem;border-radius:20px;
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;
+  margin-bottom:1.5rem;
+}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+h1{font-family:var(--mono);font-size:clamp(2rem,4vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:0.5rem;}
+h1 .name{color:var(--text);}
+h1 .role{color:var(--teal);display:block;font-size:clamp(1rem,2vw,1.6rem);margin-top:0.5rem;}
+.hero-desc{color:var(--muted);font-size:0.95rem;line-height:1.9;margin:1.5rem 0 2rem;max-width:480px;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-p{background:var(--teal);color:var(--navy);padding:0.7rem 1.75rem;border-radius:3px;text-decoration:none;font-weight:700;font-family:var(--mono);font-size:0.8rem;letter-spacing:0.05em;transition:opacity 0.2s;}
+.btn-p:hover{opacity:0.85;}
+.btn-o{border:1px solid rgba(0,212,200,0.4);color:var(--teal);padding:0.7rem 1.75rem;border-radius:3px;text-decoration:none;font-size:0.8rem;font-family:var(--mono);transition:all 0.2s;}
+.btn-o:hover{background:rgba(0,212,200,0.1);border-color:var(--teal);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+.stat{border-left:2px solid var(--teal);padding-left:1rem;}
+.stat-n{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--teal);}
+.stat-l{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
+
+/* HERO RIGHT — DEVOPS TERMINAL */
+.hero-right{position:relative;}
+.terminal{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 0 60px rgba(0,212,200,0.08);
+}
+.term-header{
+  background:var(--card2);padding:0.75rem 1rem;
+  display:flex;align-items:center;gap:0.5rem;
+  border-bottom:1px solid var(--border);
+}
+.term-dot{width:10px;height:10px;border-radius:50%;}
+.term-title{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-left:0.5rem;}
+.term-body{padding:1.25rem;font-family:var(--mono);font-size:0.78rem;line-height:2;}
+.t-comment{color:#4A6070;}
+.t-cmd{color:var(--teal);}
+.t-str{color:#F0C070;}
+.t-key{color:#90C8F0;}
+.t-val{color:#A0E0A0;}
+.t-prompt{color:var(--muted);}
+.t-cursor{display:inline-block;width:8px;height:14px;background:var(--teal);animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* FLOATING TECH BADGES */
+.tech-badge{
+  position:absolute;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:0.5rem 0.75rem;
+  font-family:var(--mono);font-size:0.7rem;color:var(--teal);
+  display:flex;align-items:center;gap:0.4rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  white-space:nowrap;
+}
+.tb1{top:-20px;right:20px;animation:float1 4s ease-in-out infinite;}
+.tb2{bottom:30px;left:-30px;animation:float2 5s ease-in-out infinite;}
+.tb3{top:50%;right:-30px;animation:float3 4.5s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes float3{0%,100%{transform:translateY(-50%);}50%{transform:translateY(calc(-50% - 8px));}}
+
+/* ── TECH STACK MARQUEE ── */
+.marquee-section{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--card);padding:1.25rem 0;overflow:hidden;position:relative;
+}
+.marquee-label{
+  position:absolute;left:0;top:0;bottom:0;z-index:10;
+  background:linear-gradient(90deg,var(--card) 60%,transparent);
+  padding:0 3rem 0 2rem;display:flex;align-items:center;
+  font-family:var(--mono);font-size:0.7rem;color:var(--teal);letter-spacing:0.1em;
+  white-space:nowrap;
+}
+.marquee-track{display:flex;gap:2rem;animation:marquee 25s linear infinite;width:max-content;}
+.marquee-track:hover{animation-play-state:paused;}
+.m-item{
+  display:flex;align-items:center;gap:0.6rem;
+  font-family:var(--mono);font-size:0.78rem;color:var(--muted);
+  background:rgba(0,212,200,0.05);border:1px solid rgba(0,212,200,0.1);
+  padding:0.35rem 0.9rem;border-radius:20px;white-space:nowrap;
+}
+.m-icon{font-size:1rem;}
+@keyframes marquee{from{transform:translateX(160px);}to{transform:translateX(-50%);}}
+
+/* ── ABOUT ── */
+.about-section{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-left{}
+.section-eyebrow{font-family:var(--mono);font-size:0.7rem;color:var(--teal);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;}
+.section-eyebrow::before{content:'// ';}
+h2{font-family:var(--mono);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:1.5rem;}
+h2 span{color:var(--teal);}
+.about-text{color:var(--muted);line-height:1.9;font-size:0.95rem;margin-bottom:1.5rem;}
+.award-badge{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:rgba(255,200,60,0.08);border:1px solid rgba(255,200,60,0.25);
+  border-radius:8px;padding:0.75rem 1.25rem;margin-top:1rem;
+}
+.award-icon{font-size:1.5rem;}
+.award-text{font-size:0.85rem;}
+.award-title{color:#F0C070;font-weight:600;font-family:var(--mono);}
+.award-sub{color:var(--muted);font-size:0.78rem;}
+.about-right{}
+.info-cards{display:flex;flex-direction:column;gap:1rem;}
+.info-card{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;
+  transition:border-color 0.2s;
+}
+.info-card:hover{border-color:var(--teal);}
+.info-card-icon{font-size:1.4rem;width:42px;text-align:center;}
+.info-card-label{font-size:0.72rem;color:var(--muted);font-family:var(--mono);}
+.info-card-val{font-size:0.9rem;color:var(--text);}
+
+/* ── SKILLS ── */
+.skills-section{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
+.skill-card{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;
+  transition:all 0.25s;position:relative;overflow:hidden;
+}
+.skill-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--teal2));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.skill-card:hover{border-color:rgba(0,212,200,0.4);transform:translateY(-3px);}
+.skill-card:hover::after{transform:scaleX(1);}
+.skill-cat{font-family:var(--mono);font-size:0.7rem;color:var(--teal);letter-spacing:0.1em;margin-bottom:1rem;text-transform:uppercase;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.tag{background:rgba(0,212,200,0.08);color:rgba(0,212,200,0.9);border:1px solid rgba(0,212,200,0.2);padding:0.25rem 0.65rem;border-radius:3px;font-size:0.75rem;font-family:var(--mono);}
+
+/* ── EXPERIENCE ── */
+.exp-section{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--teal),transparent);}
+.exp-item{position:relative;margin-bottom:3rem;padding-left:1.5rem;}
+.exp-dot{position:absolute;left:-2.3rem;top:0.4rem;width:10px;height:10px;border-radius:50%;background:var(--teal);border:2px solid var(--navy);box-shadow:0 0 10px rgba(0,212,200,0.5);}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color 0.2s;}
+.exp-card:hover{border-color:rgba(0,212,200,0.4);}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;}
+.exp-title{font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--text);}
+.exp-company{color:var(--teal);font-size:0.85rem;margin-top:0.15rem;}
+.exp-date{font-family:var(--mono);font-size:0.7rem;color:var(--muted);background:rgba(0,212,200,0.08);border:1px solid var(--border);padding:0.25rem 0.75rem;border-radius:20px;}
+.exp-desc{color:var(--muted);font-size:0.875rem;line-height:1.8;margin-bottom:1rem;}
+.exp-buls{list-style:none;}
+.exp-buls li{font-size:0.85rem;color:var(--muted);padding:0.2rem 0 0.2rem 1.2rem;position:relative;}
+.exp-buls li::before{content:'▸';color:var(--teal);position:absolute;left:0;font-size:0.7rem;top:0.45rem;}
+.exp-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
+.stag{background:rgba(0,212,200,0.06);color:rgba(0,212,200,0.7);border:1px solid rgba(0,212,200,0.15);padding:0.18rem 0.55rem;border-radius:3px;font-size:0.72rem;font-family:var(--mono);}
+
+/* ── PROJECTS ── */
+.proj-section{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.5rem;transition:all 0.25s;position:relative;overflow:hidden;
+}
+.proj-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,212,200,0.03),transparent);
+  pointer-events:none;
+}
+.proj-card:hover{border-color:rgba(0,212,200,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3);}
+.proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;}
+.proj-icon-wrap{width:44px;height:44px;border-radius:8px;background:rgba(0,212,200,0.1);border:1px solid rgba(0,212,200,0.25);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.proj-live{font-family:var(--mono);font-size:0.65rem;color:var(--teal);background:rgba(0,212,200,0.1);border:1px solid rgba(0,212,200,0.25);padding:0.2rem 0.6rem;border-radius:20px;display:flex;align-items:center;gap:0.3rem;}
+.proj-live::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
+.proj-name{font-family:var(--mono);font-size:0.95rem;font-weight:700;margin-bottom:0.25rem;}
+.proj-sub{font-size:0.78rem;color:var(--teal);margin-bottom:0.75rem;}
+.proj-desc{color:var(--muted);font-size:0.85rem;line-height:1.8;margin-bottom:1rem;}
+.proj-metrics{display:flex;gap:1.5rem;margin-bottom:1rem;padding:0.75rem;background:rgba(0,212,200,0.04);border-radius:6px;border:1px solid rgba(0,212,200,0.1);}
+.met{text-align:center;}
+.met-v{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--teal);}
+.met-l{font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+
+/* ── CONTACT ── */
+.contact-section{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+.c-link{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;
+  text-decoration:none;transition:all 0.2s;
+}
+.c-link:hover{border-color:var(--teal);transform:translateX(4px);}
+.c-link-icon{width:36px;height:36px;border-radius:6px;background:rgba(0,212,200,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.c-link-label{font-size:0.72rem;color:var(--muted);font-family:var(--mono);}
+.c-link-val{font-size:0.875rem;color:var(--text);}
+.c-link-arrow{margin-left:auto;color:var(--teal);font-size:0.8rem;}
+
+/* FORM */
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:0.4rem;}
+.fl{font-family:var(--mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+.fi{
+  background:var(--card);border:1px solid var(--border);border-radius:6px;
+  padding:0.75rem 1rem;color:var(--text);font-family:var(--sans);font-size:0.875rem;
+  outline:none;transition:border-color 0.2s;width:100%;
+}
+.fi:focus{border-color:var(--teal);}
+.fi::placeholder{color:var(--muted);}
+textarea.fi{resize:vertical;min-height:130px;}
+.fbtn{
+  background:var(--teal);color:var(--navy);border:none;
+  padding:0.875rem 2rem;border-radius:4px;font-weight:700;
+  font-family:var(--mono);font-size:0.82rem;cursor:pointer;
+  transition:opacity 0.2s;letter-spacing:0.05em;
+}
+.fbtn:hover{opacity:0.85;}
+.form-success{display:none;color:var(--teal);font-family:var(--mono);font-size:0.8rem;margin-top:0.5rem;}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:2.5rem 3rem;
+  border-top:1px solid var(--border);
+  background:var(--card);
+}
+.footer-logo{font-family:var(--mono);color:var(--teal);font-size:1.1rem;margin-bottom:0.5rem;}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin:1rem 0;list-style:none;flex-wrap:wrap;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;font-family:var(--mono);transition:color 0.2s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-copy{color:var(--muted);font-size:0.75rem;font-family:var(--mono);}
+
+/* ── DIVIDER ── */
+.divider{width:100%;height:1px;background:var(--border);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-left>*{animation:fadeUp 0.7s ease both;}
+.hero-left>*:nth-child(1){animation-delay:0.1s;}
+.hero-left>*:nth-child(2){animation-delay:0.2s;}
+.hero-left>*:nth-child(3){animation-delay:0.3s;}
+.hero-left>*:nth-child(4){animation-delay:0.4s;}
+.hero-left>*:nth-child(5){animation-delay:0.55s;}
+.hero-right{animation:fadeUp 0.7s 0.4s ease both;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .hero-content{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;}
+  .hero-right{display:none;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  section,.about-section,.skills-section,.exp-section,.proj-section,.contact-section{padding:3rem 1.5rem;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">GT<span style="color:var(--muted);">_devops</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="mailto:jinkateja2003@gmail.com" class="nav-cta">hire me</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="grid-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="badge">🟢 open to opportunities</div>
+      <h1>
+        <span class="name">Ginka Theja</span>
+        <span class="role">DevOps Engineer</span>
+      </h1>
+      <p class="hero-desc">
+        Building resilient, automated cloud-native infrastructure on AWS EKS.
+        I turn complex deployment pipelines into zero-touch systems —
+        from GitOps to white-label microsite infrastructure.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-p">view projects →</a>
+        <a href="#contact" class="btn-o">get in touch</a>
+        <a href="https://linkedin.com/in/ginka-theja-7b291a258" target="_blank" class="btn-o">linkedin ↗</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-n">1.5+</div>
+          <div class="stat-l">years exp</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">10</div>
+          <div class="stat-l">team members</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">3</div>
+          <div class="stat-l">live systems</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">67%</div>
+          <div class="stat-l">deploy faster</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="hero-right">
+      <div style="position:relative;">
+        <div class="tech-badge tb1">🐳 Docker + K8s</div>
+        <div class="tech-badge tb2">⚙️ Jenkins CI/CD</div>
+        <div class="tech-badge tb3">☁️ AWS EKS</div>
+        <div class="terminal">
+          <div class="term-header">
+            <div class="term-dot" style="background:#FF5F57;"></div>
+            <div class="term-dot" style="background:#FFBD2E;"></div>
+            <div class="term-dot" style="background:#28CA41;"></div>
+            <span class="term-title">ginka@devops-terminal ~ zsh</span>
+          </div>
+          <div class="term-body">
+<span class="t-comment"># DevOps Engineer — Ginka Theja</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">kubectl get pods -n production</span><br>
+<span class="t-val">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;READY</span><br>
+<span class="t-val">unlimitmobile-api&nbsp;&nbsp;&nbsp;Running&nbsp;✓</span><br>
+<span class="t-val">ai-chatbot-svc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;✓</span><br>
+<span class="t-val">harbor-registry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Running&nbsp;✓</span><br><br>
+<span class="t-prompt">$ </span><span class="t-cmd">helm list --all-namespaces</span><br>
+<span class="t-str">argocd&nbsp;&nbsp;&nbsp;&nbsp;v2.9.0&nbsp;&nbsp;deployed</span><br>
+<span class="t-str">prometheus&nbsp;v25.0&nbsp;&nbsp;deployed</span><br>
+<span class="t-str">grafana&nbsp;&nbsp;&nbsp;v7.3.0&nbsp;&nbsp;deployed</span><br>
+<span class="t-str">chatwoot&nbsp;&nbsp;v3.2.0&nbsp;&nbsp;deployed</span><br>
+<span class="t-str">kestra&nbsp;&nbsp;&nbsp;&nbsp;v0.15.0&nbsp;deployed</span><br><br>
+<span class="t-prompt">$ </span><span class="t-cmd">argocd app sync production</span><br>
+<span class="t-val">✓ Synced&nbsp;&nbsp;deployment/unlimitmobile</span><br>
+<span class="t-val">✓ Synced&nbsp;&nbsp;deployment/api-gateway</span><br>
+<span class="t-val">↓ 67% faster than manual deploy</span><br><br>
+<span class="t-prompt">$ </span><span class="t-cursor"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-label">TECH STACK</div>
+  <div style="padding-left:160px;overflow:hidden;">
+    <div class="marquee-track">
+      <div class="m-item"><span class="m-icon">☸️</span> Kubernetes</div>
+      <div class="m-item"><span class="m-icon">🐳</span> Docker</div>
+      <div class="m-item"><span class="m-icon">⚙️</span> Jenkins</div>
+      <div class="m-item"><span class="m-icon">🔄</span> ArgoCD</div>
+      <div class="m-item"><span class="m-icon">⛵</span> Helm</div>
+      <div class="m-item"><span class="m-icon">☁️</span> AWS EKS</div>
+      <div class="m-item"><span class="m-icon">🔧</span> Terraform</div>
+      <div class="m-item"><span class="m-icon">📊</span> Prometheus</div>
+      <div class="m-item"><span class="m-icon">📈</span> Grafana</div>
+      <div class="m-item"><span class="m-icon">🚀</span> Karpenter</div>
+      <div class="m-item"><span class="m-icon">🏷️</span> Harbor</div>
+      <div class="m-item"><span class="m-icon">🌐</span> NGINX</div>
+      <div class="m-item"><span class="m-icon">🐍</span> Python</div>
+      <div class="m-item"><span class="m-icon">🔐</span> IAM MFA</div>
+      <div class="m-item"><span class="m-icon">📡</span> Route53</div>
+      <div class="m-item"><span class="m-icon">🗄️</span> PostgreSQL</div>
+      <div class="m-item"><span class="m-icon">☸️</span> Kubernetes</div>
+      <div class="m-item"><span class="m-icon">🐳</span> Docker</div>
+      <div class="m-item"><span class="m-icon">⚙️</span> Jenkins</div>
+      <div class="m-item"><span class="m-icon">🔄</span> ArgoCD</div>
+      <div class="m-item"><span class="m-icon">⛵</span> Helm</div>
+      <div class="m-item"><span class="m-icon">☁️</span> AWS EKS</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="section-eyebrow">who i am</div>
+      <h2>About <span>Me</span></h2>
+      <p class="about-text">
+        DevOps Engineer with 1.5+ years of hands-on production experience at Zetexa Global Pvt. Limited, Hyderabad.
+        I manage end-to-end cloud infrastructure for a 10-member development team building Angular, Next.js, Python, Java, and AI agent applications — all on AWS EKS in live production.
+      </p>
+      <p class="about-text">
+        My passion is replacing expensive managed services with cost-efficient open-source alternatives,
+        automating everything possible, and building infrastructure that's invisible to developers so they can focus on what matters.
+      </p>
+      <div class="award-badge">
+        <div class="award-icon">🏆</div>
+        <div class="award-text">
+          <div class="award-title">Best Performer Award — 2025</div>
+          <div class="award-sub">Zetexa Global Pvt. Limited</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card-icon">📍</div>
+          <div><div class="info-card-label">location</div><div class="info-card-val">Hyderabad, Telangana, India</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🎓</div>
+          <div><div class="info-card-label">education</div><div class="info-card-val">B.Tech ECE — CGPA 8.98 / 10</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🏢</div>
+          <div><div class="info-card-label">current company</div><div class="info-card-val">Zetexa Global Pvt. Limited</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">👥</div>
+          <div><div class="info-card-label">team supported</div><div class="info-card-val">10-member dev team (Angular, Next.js, Python, Java, AI)</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">📜</div>
+          <div><div class="info-card-label">certification</div><div class="info-card-val">DevOps on AWS — Cloud247.ai</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🔍</div>
+          <div><div class="info-card-label">availability</div><div class="info-card-val" style="color:var(--teal);">Open to new opportunities</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div class="skills-section" id="skills">
+  <div class="section-eyebrow">what i work with</div>
+  <h2>Technical <span>Skills</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-cat">container &amp; orchestration</div>
+      <div class="skill-tags">
+        <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">Karpenter</span><span class="tag">AWS EKS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">ci/cd &amp; gitops</div>
+      <div class="skill-tags">
+        <span class="tag">Jenkins</span><span class="tag">ArgoCD</span><span class="tag">AWS CodePipeline</span><span class="tag">AWS CodeBuild</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">iac &amp; automation</div>
+      <div class="skill-tags">
+        <span class="tag">Terraform</span><span class="tag">CloudFormation</span><span class="tag">Bash</span><span class="tag">Shell Scripting</span><span class="tag">YAML</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">monitoring &amp; alerts</div>
+      <div class="skill-tags">
+        <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">CloudWatch</span><span class="tag">UptimeRobot</span><span class="tag">AWS SNS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">networking &amp; security</div>
+      <div class="skill-tags">
+        <span class="tag">NGINX Ingress</span><span class="tag">Route53</span><span class="tag">SSL/TLS</span><span class="tag">IAM MFA</span><span class="tag">RBAC</span><span class="tag">Secrets Manager</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">open-source tools</div>
+      <div class="skill-tags">
+        <span class="tag">Harbor</span><span class="tag">Chatwoot</span><span class="tag">Kestra</span><span class="tag">Redis</span><span class="tag">ArgoCD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<div class="exp-section" id="experience">
+  <div class="section-eyebrow">where i've worked</div>
+  <h2>Work <span>Experience</span></h2>
+  <div class="timeline">
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-title">DevOps Engineer</div>
+            <div class="exp-company">Zetexa Global Pvt. Limited · Hyderabad</div>
+          </div>
+          <div class="exp-date">Dec 2024 – Present</div>
+        </div>
+        <p class="exp-desc">Managing end-to-end cloud infrastructure and deployments for a 10-member development team on AWS EKS. Awarded Best Performer 2025 for significant cost optimization and production system ownership.</p>
+        <ul class="exp-buls">
+          <li>Architected white-label microsite infrastructure for resellers — custom subdomains, branding, domain masking via Route53 + NGINX Ingress</li>
+          <li>Migrated CI/CD from AWS-managed to open-source Jenkins + Harbor, significantly reducing cloud costs</li>
+          <li>Authored parameterized Helm charts for all frontend and backend microservices on EKS</li>
+          <li>Deployed ArgoCD GitOps — zero-touch production releases on every commit</li>
+          <li>Built full observability: Prometheus + Grafana + AWS SNS + UptimeRobot</li>
+          <li>Deployed AI Chatbot Platform (Chatwoot + AI agent) on EKS (2026)</li>
+          <li>Reduced manual setup by 90% via CloudFormation automation</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stag">AWS EKS</span><span class="stag">Kubernetes</span><span class="stag">Jenkins</span>
+          <span class="stag">ArgoCD</span><span class="stag">Helm</span><span class="stag">Harbor</span>
+          <span class="stag">Karpenter</span><span class="stag">Terraform</span><span class="stag">Prometheus</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-title">Freelance DevOps &amp; Python Developer</div>
+            <div class="exp-company">Self-Employed — 2 Clients · Remote</div>
+          </div>
+          <div class="exp-date">2024 – Present</div>
+        </div>
+        <p class="exp-desc">End-to-end AWS infrastructure setup and Python Flask application development for two small business clients.</p>
+        <ul class="exp-buls">
+          <li>Developed and deployed Python Flask web applications on AWS EC2</li>
+          <li>Provisioned RDS (MySQL/PostgreSQL), Route53 DNS, NGINX reverse proxy with SSL/HTTPS</li>
+          <li>Configured custom domain nameservers mapping client domains to EC2 instances</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stag">Python</span><span class="stag">Flask</span><span class="stag">AWS EC2</span>
+          <span class="stag">RDS</span><span class="stag">Route53</span><span class="stag">NGINX</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<div class="proj-section" id="projects">
+  <div class="section-eyebrow">what i've built</div>
+  <h2>Featured <span>Projects</span></h2>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-icon-wrap">🚀</div>
+        <div class="proj-live">LIVE</div>
+      </div>
+      <div class="proj-name">UnlimitMobile Application</div>
+      <div class="proj-sub">Live Production · 2025</div>
+      <p class="proj-desc">Full end-to-end ownership of a live client-facing mobile application. Complete pipeline from GitHub to EKS with white-label reseller subdomain infrastructure and zero-touch deployments.</p>
+      <div class="proj-metrics">
+        <div class="met"><div class="met-v">67%</div><div class="met-l">faster deploy</div></div>
+        <div class="met"><div class="met-v">40%</div><div class="met-l">faster detect</div></div>
+        <div class="met"><div class="met-v">0</div><div class="met-l">manual steps</div></div>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">EKS</span><span class="tag">ArgoCD</span><span class="tag">Jenkins</span><span class="tag">Helm</span><span class="tag">Harbor</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-icon-wrap">🤖</div>
+        <div class="proj-live">LIVE</div>
+      </div>
+      <div class="proj-name">Internal AI Chatbot Platform</div>
+      <div class="proj-sub">AI Agent Deployment · 2026</div>
+      <p class="proj-desc">Deployed AI agent frontend with Chatwoot as chat interface on AWS EKS. Configured namespaces, RBAC, Karpenter autoscaling, and full monitoring for AI workloads.</p>
+      <div class="proj-tags">
+        <span class="tag">Chatwoot</span><span class="tag">EKS</span><span class="tag">Helm</span><span class="tag">Karpenter</span><span class="tag">Prometheus</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-icon-wrap">🏷️</div>
+        <div class="proj-live">LIVE</div>
+      </div>
+      <div class="proj-name">White-label Microsite Infrastructure</div>
+      <div class="proj-sub">Reseller Platform · Zetexa Global</div>
+      <p class="proj-desc">Architected reseller subdomain provisioning (reseller.zetexa.com) with custom branding, domain masking, and SSL/TLS — seamless white-label delivery without exposing base infrastructure.</p>
+      <div class="proj-tags">
+        <span class="tag">Route53</span><span class="tag">NGINX Ingress</span><span class="tag">ACM</span><span class="tag">SSL/TLS</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-icon-wrap">⚙️</div>
+      </div>
+      <div class="proj-name">Open-Source DevOps Migration</div>
+      <div class="proj-sub">Cost Optimization · 2024</div>
+      <p class="proj-desc">Migrated entire CI/CD and container registry from AWS-managed to open-source stack (Jenkins + Harbor), cutting cloud costs while maintaining reliability and speed.</p>
+      <div class="proj-metrics">
+        <div class="met"><div class="met-v">90%</div><div class="met-l">setup reduced</div></div>
+        <div class="met"><div class="met-v">₹0</div><div class="met-l">registry cost</div></div>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Jenkins</span><span class="tag">Harbor</span><span class="tag">Karpenter</span><span class="tag">CloudFormation</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-icon-wrap">📊</div>
+      </div>
+      <div class="proj-name">Full Observability Stack</div>
+      <div class="proj-sub">Monitoring Platform · Zetexa Global</div>
+      <p class="proj-desc">Built complete observability — Prometheus + Grafana metrics, AWS SNS database alerts, and UptimeRobot endpoint monitoring with instant downtime notifications across all production services.</p>
+      <div class="proj-tags">
+        <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">AWS SNS</span><span class="tag">UptimeRobot</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-icon-wrap">🐍</div>
+      </div>
+      <div class="proj-name">Freelance AWS Deployments</div>
+      <div class="proj-sub">2 Client Projects · 2024</div>
+      <p class="proj-desc">Python Flask applications with complete AWS infrastructure — EC2, RDS, Route53 DNS, and NGINX SSL proxy for two business clients. Full end-to-end ownership from dev to live production.</p>
+      <div class="proj-tags">
+        <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">EC2</span><span class="tag">RDS</span><span class="tag">Route53</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="section-eyebrow">let's work together</div>
+  <h2>Get In <span>Touch</span></h2>
+  <div class="contact-grid">
+    <div>
+      <p style="color:var(--muted);font-size:0.95rem;line-height:1.9;margin-bottom:1.5rem;">
+        I'm actively looking for DevOps Engineer, Cloud Engineer, or SRE opportunities in Hyderabad or remote.
+        Open to full-time roles and interesting freelance infrastructure projects.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:jinkateja2003@gmail.com" class="c-link">
+          <div class="c-link-icon">📧</div>
+          <div><div class="c-link-label">email</div><div class="c-link-val">jinkateja2003@gmail.com</div></div>
+          <div class="c-link-arrow">→</div>
+        </a>
+        <a href="tel:+919014553709" class="c-link">
+          <div class="c-link-icon">📱</div>
+          <div><div class="c-link-label">phone</div><div class="c-link-val">+91 9014553709</div></div>
+          <div class="c-link-arrow">→</div>
+        </a>
+        <a href="https://linkedin.com/in/ginka-theja-7b291a258" target="_blank" class="c-link">
+          <div class="c-link-icon">💼</div>
+          <div><div class="c-link-label">linkedin</div><div class="c-link-val">linkedin.com/in/ginka-theja-7b291a258</div></div>
+          <div class="c-link-arrow">↗</div>
+        </a>
+        <a href="https://github.com/Theja2709" target="_blank" class="c-link">
+          <div class="c-link-icon">💻</div>
+          <div><div class="c-link-label">github</div><div class="c-link-val">github.com/Theja2709</div></div>
+          <div class="c-link-arrow">↗</div>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="fg">
+          <label class="fl">name</label>
+          <input type="text" class="fi" placeholder="John Doe" required>
+        </div>
+        <div class="fg">
+          <label class="fl">email</label>
+          <input type="email" class="fi" placeholder="john@company.com" required>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="fl">company / role</label>
+        <input type="text" class="fi" placeholder="Recruiter at TechCorp / DevOps role">
+      </div>
+      <div class="fg">
+        <label class="fl">message</label>
+        <textarea class="fi" placeholder="Tell me about the opportunity or project..."></textarea>
+      </div>
+      <button type="submit" class="fbtn">send message →</button>
+      <p class="form-success" id="fsuccess">&gt; message received! i'll get back to you soon.</p>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GT_devops</div>
+  <ul class="footer-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+    <li><a href="https://linkedin.com/in/ginka-theja-7b291a258" target="_blank">linkedin ↗</a></li>
+    <li><a href="https://github.com/Theja2709" target="_blank">github ↗</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Ginka Theja · DevOps Engineer · Hyderabad, India</p>
+</footer>
+
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  const s=document.getElementById('fsuccess');
+  s.style.display='block';
+  e.target.reset();
+}
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(el=>{
+    if(el.isIntersecting){
+      el.target.style.opacity='1';
+      el.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.08});
+
+document.querySelectorAll('.skill-card,.proj-card,.exp-card,.info-card,.c-link').forEach((el,i)=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition=`opacity 0.5s ${i*0.05}s ease, transform 0.5s ${i*0.05}s ease, border-color 0.2s`;
+  io.observe(el);
+});
+</script>
+</body>
+</html>

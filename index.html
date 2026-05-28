@@ -1,73 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ginka Theja — DevOps Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --teal: #00D4C8;
+  --teal2: #00A896;
+  --teal3: #007B7B;
+  --navy: #060D1A;
+  --navy2: #0A1628;
+  --navy3: #0F2040;
+  --card: #0D1B2E;
+  --card2: #112238;
+  --text: #E8EDF5;
+  --muted: #7A8FA8;
+  --border: rgba(0,212,200,0.15);
+  --glow: rgba(0,212,200,0.08);
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--navy);
+  color:var(--text);
+  font-family:var(--sans);
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:200;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:1rem 3rem;
+
+  background:rgba(6,13,26,0.85);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid var(--border);
+}
+
+.nav-logo{
+  font-family:var(--mono);
+  color:var(--teal);
+  font-size:0.9rem;
+  letter-spacing:0.1em;
+}
+
+.nav-links{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+}
+
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+}
+
+.nav-cta{
+  background:transparent;
+  border:1px solid var(--teal);
+  color:var(--teal);
+  padding:0.45rem 1.25rem;
+  border-radius:3px;
+  text-decoration:none;
+}
+
+/* CONTACT */
+
+.contact-section{
+  max-width:1100px;
+  margin:0 auto;
+  padding:10rem 3rem 5rem;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:4rem;
+}
+
+.contact-links{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.c-link{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+
+  padding:1rem 1.25rem;
+
+  text-decoration:none;
+}
+
+.c-link-icon{
+  width:36px;
+  height:36px;
+  border-radius:6px;
+
+  background:rgba(0,212,200,0.1);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.c-link-label{
+  font-size:0.72rem;
+  color:var(--muted);
+}
+
+.c-link-val{
+  font-size:0.875rem;
+  color:var(--text);
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+
+.fg{
+  display:flex;
+  flex-direction:column;
+  gap:0.4rem;
+}
+
+.fl{
+  font-size:0.7rem;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.fi{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+
+  padding:0.75rem 1rem;
+
+  color:var(--text);
+
+  outline:none;
+}
+
+textarea.fi{
+  resize:vertical;
+  min-height:130px;
+}
+
+.fbtn{
+  background:var(--teal);
+  color:var(--navy);
+
+  border:none;
+
+  padding:0.875rem 2rem;
+
+  border-radius:4px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-row{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+
+  <div class="nav-logo">
+    Ginka Theja
+    <span style="color:var(--muted);">
+      | DevOps Engineer
+    </span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#contact">contact</a></li>
+  </ul>
+
+  <a href="mailto:jinkateja2003@gmail.com" class="nav-cta">
+    hire me
+  </a>
+
+</nav>
+
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
-  <div class="section-eyebrow">let's work together</div>
-  <h2>Get In <span>Touch</span></h2>
+
+  <h2 style="margin-bottom:2rem;">
+    Get In Touch
+  </h2>
 
   <div class="contact-grid">
 
     <div>
-      <p style="color:var(--muted);font-size:0.95rem;line-height:1.9;margin-bottom:1.5rem;">
-        I'm actively looking for DevOps Engineer, Cloud Engineer, or SRE opportunities in Hyderabad or remote.
-        Open to full-time roles and interesting freelance infrastructure projects.
+
+      <p style="color:var(--muted);line-height:1.8;">
+        I'm actively looking for DevOps Engineer opportunities.
       </p>
 
       <div class="contact-links">
 
         <a href="mailto:jinkateja2003@gmail.com" class="c-link">
+
           <div class="c-link-icon">📧</div>
+
           <div>
             <div class="c-link-label">email</div>
-            <div class="c-link-val">jinkateja2003@gmail.com</div>
+            <div class="c-link-val">
+              jinkateja2003@gmail.com
+            </div>
           </div>
-          <div class="c-link-arrow">→</div>
+
         </a>
 
         <a href="tel:+919014553709" class="c-link">
+
           <div class="c-link-icon">📱</div>
+
           <div>
             <div class="c-link-label">phone</div>
-            <div class="c-link-val">+91 9014553709</div>
+            <div class="c-link-val">
+              +91 9014553709
+            </div>
           </div>
-          <div class="c-link-arrow">→</div>
-        </a>
 
-        <a href="https://linkedin.com/in/ginka-theja-7b291a258" target="_blank" class="c-link">
-          <div class="c-link-icon">💼</div>
-          <div>
-            <div class="c-link-label">linkedin</div>
-            <div class="c-link-val">linkedin.com/in/ginka-theja-7b291a258</div>
-          </div>
-          <div class="c-link-arrow">↗</div>
-        </a>
-
-        <a href="https://github.com/Theja2709" target="_blank" class="c-link">
-          <div class="c-link-icon">💻</div>
-          <div>
-            <div class="c-link-label">github</div>
-            <div class="c-link-val">github.com/Theja2709</div>
-          </div>
-          <div class="c-link-arrow">↗</div>
         </a>
 
       </div>
+
     </div>
 
-    <!-- CONTACT FORM -->
+    <!-- FORM -->
     <form
       class="contact-form"
       action="https://formsubmit.co/jinkateja2003@gmail.com"
       method="POST"
     >
 
-      <!-- Hidden Config -->
+      <!-- HIDDEN CONFIG -->
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+      <input type="hidden" name="_subject" value="New Portfolio Contact">
 
       <div class="form-row">
 
         <div class="fg">
+
           <label class="fl">name</label>
+
           <input
             type="text"
             name="name"
@@ -75,10 +305,13 @@
             placeholder="John Doe"
             required
           >
+
         </div>
 
         <div class="fg">
+
           <label class="fl">email</label>
+
           <input
             type="email"
             name="email"
@@ -86,28 +319,35 @@
             placeholder="john@company.com"
             required
           >
+
         </div>
 
       </div>
 
       <div class="fg">
+
         <label class="fl">company / role</label>
+
         <input
           type="text"
           name="company"
           class="fi"
           placeholder="Recruiter at TechCorp / DevOps role"
         >
+
       </div>
 
       <div class="fg">
+
         <label class="fl">message</label>
+
         <textarea
           name="message"
           class="fi"
           placeholder="Tell me about the opportunity or project..."
           required
         ></textarea>
+
       </div>
 
       <button type="submit" class="fbtn">
@@ -117,4 +357,8 @@
     </form>
 
   </div>
+
 </div>
+
+</body>
+</html>
